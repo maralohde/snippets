@@ -24,7 +24,7 @@ do
 	#Evaluate by Interseq
 	INTERSEQ_NR=$(tail -n+2 "$x" | cut -f 1 -d ","| sort -h )
 	printf "$INTERSEQ_NR\n" > interseq.tmp
-	INTERSEQ_THRESHOLD=$(cat interseq.tmp | awk '$1 <= 20000 { print $0}' Interseq.tmp| wc -l)
+	INTERSEQ_THRESHOLD=$(cat interseq.tmp | awk '$1 <= 20000 { print $0}'| wc -l)
 	SPECIES_COUNT=$((WC_ORGANISM-INTERSEQ_THRESHOLD))
 		
 	#Summary
