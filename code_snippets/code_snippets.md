@@ -15,3 +15,9 @@ spades.py -1 illumina_R1.fastq.gz -2 illumina_R2.fastq.gz --careful --cov-cutoff
 ```bash=
 unicycler -1 <fwd>_R1.fastq.gz -2 <rev>_R2.fastq.gz -l nanopore_reads.fastq -o outputfolder
 ```
+## Snippy
+### Contig Comparison
+
+```bash=
+snippy --cpus 8 --outdir raw --ref S.101.21.Kp_ill_contigs.fasta --ctgs S.101.21.Kp_raw_contig1.fasta
+```
