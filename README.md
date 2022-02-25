@@ -7,4 +7,4 @@ Additional shell scripts to screen data via bash.
 - **snippy_loop.sh:** loop for automatic snippy analysis for multiple fastas. Comparison against illumina fasta.  
 
 ## Code blocks
-Usefull and tested code blocks for multiple programs. Could be used for further pipelines.
+Useful and tested code blocks for multiple programs. Could be used for further pipelines.
