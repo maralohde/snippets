@@ -1,0 +1,11 @@
+library(ggplot2)
+
+# Data 
+DATA_ILL <- read.csv(file="SNP_results_ill_new.csv", sep=";", header=TRUE)
+df2 <- data.frame(DATA_ILL)
+df2_small <- head(df2,398)
+nrow(df2)
+
+# Heatmap
+heatmap <- ggplot(df2, aes(x = reference, y = ctgs, fill = SNPS)) + geom_tile(color = "black") + geom_text(aes(label = SNPS), color = "white", size = 4)
+heatmap
