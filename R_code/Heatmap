@@ -7,5 +7,10 @@ df2_small <- head(df2,398)
 nrow(df2)
 
 # Heatmap
-heatmap <- ggplot(df2, aes(x = reference, y = ctgs, fill = SNPS)) + geom_tile(color = "black") + geom_text(aes(label = SNPS), color = "white", size = 4)
+heatmap <- ggplot(df2, aes(x = reference, y = ctgs, fill = SNPS)) +
+geom_tile(color = "black") + 
+geom_text(aes(label = SNPS), color = "white", size = 1) + 
+theme(axis.text.x = element_text(angle=45, vjust=1, hjust=1))
 heatmap
+
+
