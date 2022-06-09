@@ -1,3 +1,7 @@
+install.packages("plotly")
+install.packages("dplyr")
+install.packages("tidyr")
+
 library(ggplot2)
 
 # Data 
