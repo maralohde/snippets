@@ -4,7 +4,7 @@
 ```bash=
 samtools faidx S.101.21.Kp_nano_polished.fasta contig_1 > S.101.21.Kp_nano_contig1.fasta
 ```
-*Extracting coverage info
+*Extracting coverage info*
 ```bash=
 samtools depth  *bam  |  awk '{sum+=$3} END { print sum/NR}'
 ```
