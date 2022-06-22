@@ -4,7 +4,10 @@
 ```bash=
 samtools faidx S.101.21.Kp_nano_polished.fasta contig_1 > S.101.21.Kp_nano_contig1.fasta
 ```
-
+*Extracting coverage info
+```bash=
+samtools depth  *bam  |  awk '{sum+=$3} END { print sum/NR}'
+```
 ## Spades
 *Assembly for Illumina*
 ```bash=
@@ -33,4 +36,9 @@ snippy-clean_full_aln core.full.aln > clean.full.aln
 run_gubbins.py -p gubbins clean.full.aln
 snp-sites -c gubbins.filtered_polymorphic_sites.fasta > clean.core.aln
 FastTree -gtr -nt clean.core.aln > clean.core.tree
+```
+## Guppy
+*Basecalling*
+```bash=
+guppy_basecaller -c dna_r10.4_e8.1_modbases_5hmc_5mc_cg_sup.cfg -r -i nano-server/GRIDION_DISK/20220407_klebsiella_outbreak_ukl_batch04/20220407_klebsiella_outbreak_ukl_batch04/20220407_1344_X2_FAR28270_3cd30ca5/fast5_pass/ -s basecalled_demulti_data --device auto  --barcode_kits "SQK-NBD112-24" --gpu_runners_per_device 20
 ```
