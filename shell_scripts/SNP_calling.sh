@@ -62,7 +62,7 @@
         done
 
     #replacing all blanks with 0
-        sed -E 's/(^|;)(;|$)/\10\2/g; s/(^|;)(;|$)/\10\2/g' ${OUTDIR1}/${OUTDIR1_NAME}.csv > ${OUTDIR1}/SNP_resume_${OUTDIR1_NAME}.csv
+        sed -E 's/(^|;)(;|$)/\10\2/g; s/(^|;)(;|$)/\10\2/g' ${OUTDIR1}/${OUTDIR1_NAME}.csv > ${OUTDIR1}/SNP_resume_${OUTDIR1_NAME}_modified.csv 
 
 ### 1.1.2 ONT
     OUTDIR2="results/snippy_hybrid_ref_vs_ONT_genome"
@@ -79,7 +79,7 @@
         done
 
     #replacing all blanks with 0
-        sed -E 's/(^|;)(;|$)/\10\2/g; s/(^|;)(;|$)/\10\2/g' ${OUTDIR2}/${OUTDIR2_NAME}.csv > ${OUTDIR2}/SNP_resume_${OUTDIR2_NAME}.csv
+        sed -E 's/(^|;)(;|$)/\10\2/g; s/(^|;)(;|$)/\10\2/g' ${OUTDIR2}/${OUTDIR2_NAME}.csv > ${OUTDIR2}/SNP_resume_${OUTDIR2_NAME}_modified.csv 
 
 ## 1.2. snippy gg ref hybrid chromosome
     echo -e "results/1.2 snippy gg ref hybrid chromosome"
@@ -98,7 +98,7 @@
         done
 
     #replacing all blanks with 0
-        sed -E 's/(^|;)(;|$)/\10\2/g; s/(^|;)(;|$)/\10\2/g' ${OUTDIR3}/${OUTDIR3_NAME}.csv > ${OUTDIR3}/SNP_resume_${OUTDIR3_NAME}.csv
+        sed -E 's/(^|;)(;|$)/\10\2/g; s/(^|;)(;|$)/\10\2/g' ${OUTDIR3}/${OUTDIR3_NAME}.csv > ${OUTDIR3}/SNP_resume_${OUTDIR3_NAME}_modified.csv 
 
 
 ### 1.2.2 ONT
@@ -116,7 +116,7 @@
         done
 
     #replacing all blanks with 0
-        sed -E 's/(^|;)(;|$)/\10\2/g; s/(^|;)(;|$)/\10\2/g' ${OUTDIR4}/${OUTDIR4_NAME}.csv > ${OUTDIR4}/SNP_resume_${OUTDIR4_NAME}.csv
+        sed -E 's/(^|;)(;|$)/\10\2/g; s/(^|;)(;|$)/\10\2/g' ${OUTDIR4}/${OUTDIR4_NAME}.csv > ${OUTDIR4}/SNP_resume_${OUTDIR4_NAME}_modified.csv 
 
 ## 1.3 Ill Genome ref
     echo -e "\033[0;31m1.3 snippy gg ref Ill genome\033[0m"
@@ -335,8 +335,8 @@ snippy-core {snippy output directories} --ref ../reference/VA13414_index_chromos
     mkdir -p ${OUTDIR15}
 
     mkdir tmp
-    mv ${OUTDIR1}/*/ tmp/
-    mv ${OUTDIR2}/*/ tmp/
+    cp ${OUTDIR1}/*/ tmp/
+    cp ${OUTDIR2}/*/ tmp/
 
     snippy-core tmp/* --ref ${HYBRID_GENOME_REF} --prefix core_${OUTDIR15_NAME}
 
@@ -369,8 +369,8 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     mkdir -p ${OUTDIR18}
 
     mkdir tmp
-    mv ${OUTDIR3}/*/ tmp/
-    mv ${OUTDIR4}/*/ tmp/
+    cp ${OUTDIR3}/*/ tmp/
+    cp ${OUTDIR4}/*/ tmp/
 
     snippy-core tmp/* --ref ${HYBRID_CHROMOSOME_REF} --prefix core_${OUTDIR18_NAME}
 
@@ -395,8 +395,8 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     mkdir -p ${OUTDIR20}
 
     mkdir tmp
-    mv ${OUTDIR5}/*/ tmp/
-    mv ${OUTDIR6}/*/ tmp/
+    cp ${OUTDIR5}/*/ tmp/
+    cp ${OUTDIR6}/*/ tmp/
 
     snippy-core tmp/* --ref ${ILL_GENOME_REF} --prefix core_${OUTDIR20_NAME}
 
@@ -420,8 +420,8 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     mkdir -p ${OUTDIR22}
 
     mkdir tmp
-    mv ${OUTDIR9}/*/ tmp/
-    mv ${OUTDIR10}/*/ tmp/
+    cp ${OUTDIR9}/*/ tmp/
+    cp ${OUTDIR10}/*/ tmp/
 
     snippy-core tmp/* --ref ${ILL_CHROMOSOME_REF} --prefix core_${OUTDIR22_NAME}
 
@@ -446,8 +446,8 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     mkdir -p ${OUTDIR24}
 
     mkdir tmp
-    mv ${OUTDIR7}/*/ tmp/
-    mv ${OUTDIR8}/*/ tmp/
+    cp ${OUTDIR7}/*/ tmp/
+    cp ${OUTDIR8}/*/ tmp/
 
     snippy-core tmp/* --ref ${ONT_GENOME_REF} --prefix core_${OUTDIR24_NAME}
     
@@ -471,10 +471,12 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     mkdir -p ${OUTDIR26}
 
     mkdir tmp
-    mv ${OUTDIR11}/*/ tmp/
-    mv ${OUTDIR12}/*/ tmp/
+    cp ${OUTDIR11}/*/ tmp/
+    cp ${OUTDIR12}/*/ tmp/
 
     snippy-core tmp/* --ref ${ONT_GENOME_REF} --prefix core_${OUTDIR26_NAME}
+
+    rm -rf tmp/
 
     mv core_${OUTDIR26_NAME}* ${OUTDIR26}
 
