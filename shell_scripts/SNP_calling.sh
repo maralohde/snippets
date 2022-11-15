@@ -302,4 +302,180 @@
         sed "/${ONT_CHROMOSOME_REF_NAME};${ONT_CHROMOSOME_REF_NAME};/d" ${OUTDIR12}/SNP_resume_${OUTDIR12_NAME}.csv > ${OUTDIR12}/SNP_resume_${OUTDIR12_NAME}_modified.csv 
 ################################################
 
-#SNIPPY_CORE
+    echo "############"
+    echo -e "\033[1m#  SNIPPY CORE  #\033[22m"
+    echo "############"
+snippy-core {snippy output directories} --ref ../reference/VA13414_index_chromosom.fasta --prefix core
+
+# 2. SNIPPY-CORE
+    echo "SNIPPY CORE"
+## 2.1 Hybrid Genome Ref
+    echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
+### 2.1.1 Hybrid Genome Ref gg Ill Genomes
+    OUTDIR13="results/snippy-core_index_hybrid_ref_vs_Ill_genomes"
+    OUTDIR13_NAME=$(basename ${OUTDIR13})
+    mkdir -p ${OUTDIR13}
+
+    snippy-core ${OUTDIR1}/*/ --ref ${HYBRID_GENOME_REF} --prefix core_${OUTDIR13_NAME}
+
+    mv core_${OUTDIR13_NAME}* ${OUTDIR13}
+
+### 2.1.2 Hybrid Genome Ref gg ONT Genomes
+    OUTDIR14="results/snippy-core_index_hybrid_ref_vs_ONT_genomes"
+    OUTDIR14_NAME=$(basename ${OUTDIR14})
+    mkdir -p ${OUTDIR14}
+
+    snippy-core ${OUTDIR2}/*/ --ref ${HYBRID_GENOME_REF} --prefix core_${OUTDIR14_NAME}
+
+    mv core_${OUTDIR14_NAME}* ${OUTDIR14}
+
+### 2.1.3 Hybrid Genome Ref gg combined Genomes
+    OUTDIR15="results/snippy-core_index_hybrid_ref_vs_combined_genomes"
+    OUTDIR15_NAME=$(basename ${OUTDIR15})
+    mkdir -p ${OUTDIR15}
+
+    mkdir tmp
+    mv ${OUTDIR1}/*/ tmp/
+    mv ${OUTDIR2}/*/ tmp/
+
+    snippy-core tmp/* --ref ${HYBRID_GENOME_REF} --prefix core_${OUTDIR15_NAME}
+
+    rm -rf tmp/
+    mv core_${OUTDIR15_NAME}* ${OUTDIR15}
+
+## 2.2 Hybrid Chromosome Ref
+echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
+### 2.2.1 Hybrid Chromosome Ref gg Ill Chromosomes
+    OUTDIR16="results/snippy-core_index_hybrid_ref_vs_Ill_chromosomes"
+    OUTDIR16_NAME=$(basename ${OUTDIR16})
+    mkdir -p ${OUTDIR16}
+
+    snippy-core ${OUTDIR3}/*/ --ref ${HYBRID_CHROMOSOME_REF} --prefix core_${OUTDIR16_NAME}
+
+    mv core_${OUTDIR16_NAME}* ${OUTDIR16}
+
+### 2.2.2 Hybrid Genome Ref gg ONT Chromosomes
+    OUTDIR17="results/snippy-core_index_hybrid_ref_vs_ONT_chromosomes"
+    OUTDIR17_NAME=$(basename ${OUTDIR17})
+    mkdir -p ${OUTDIR17}
+
+    snippy-core ${OUTDIR4}/*/ --ref ${HYBRID_CHROMOSOME_REF} --prefix core_${OUTDIR17_NAME}
+
+    mv core_${OUTDIR17_NAME}* ${OUTDIR17}
+
+### 2.2.3 Hybrid Genome Ref gg combined Chromosomes
+    OUTDIR18="results/snippy-core_index_hybrid_ref_vs_combined_chromosomes"
+    OUTDIR18_NAME=$(basename ${OUTDIR18})
+    mkdir -p ${OUTDIR18}
+
+    mkdir tmp
+    mv ${OUTDIR3}/*/ tmp/
+    mv ${OUTDIR4}/*/ tmp/
+
+    snippy-core tmp/* --ref ${HYBRID_CHROMOSOME_REF} --prefix core_${OUTDIR18_NAME}
+
+    rm -rf tmp/
+
+    mv core_${OUTDIR18_NAME}* ${OUTDIR18}
+
+## 2.3 Ill Genome Ref
+### 2.3.1 Ill Genome gg Ill Genomes
+    OUTDIR19="results/snippy-core_Ill_genome_ref_vs_Ill_genomes"
+    OUTDIR19_NAME=$(basename ${OUTDIR19})
+    mkdir -p ${OUTDIR19}
+
+    snippy-core ${OUTDIR5}/*/ --ref ${ILL_GENOME_REF} --prefix core_${OUTDIR19_NAME}
+
+    mv core_${OUTDIR19_NAME}* ${OUTDIR19}
+
+
+### 2.3.2 Ill Genome gg combined Genomes
+    OUTDIR20="results/snippy-core_Ill_genome_ref_vs_combined_genomes"
+    OUTDIR20_NAME=$(basename ${OUTDIR20})
+    mkdir -p ${OUTDIR20}
+
+    mkdir tmp
+    mv ${OUTDIR5}/*/ tmp/
+    mv ${OUTDIR6}/*/ tmp/
+
+    snippy-core tmp/* --ref ${ILL_GENOME_REF} --prefix core_${OUTDIR20_NAME}
+
+    rm -rf tmp/
+
+    mv core_${OUTDIR20_NAME}* ${OUTDIR20}
+
+## 2.4 Ill Chromosome Ref
+### 2.4.1 Ill Chromosome Ref gg Ill Chromosomes
+    OUTDIR21="results/snippy-core_Ill_chromosome_ref_vs_Ill_chromosomes"
+    OUTDIR21_NAME=$(basename ${OUTDIR21})
+    mkdir -p ${OUTDIR21}
+
+    snippy-core ${OUTDIR9}/*/ --ref ${ILL_CHROMOSOME_REF} --prefix core_${OUTDIR21_NAME}
+
+    mv core_${OUTDIR21_NAME}* ${OUTDIR21}
+
+### 2.4.2 Ill Chromosome Ref gg combined Chromosomes
+    OUTDIR22="results/snippy-core_Ill_chromosomes_ref_vs_combined_genomes"
+    OUTDIR22_NAME=$(basename ${OUTDIR22})
+    mkdir -p ${OUTDIR22}
+
+    mkdir tmp
+    mv ${OUTDIR9}/*/ tmp/
+    mv ${OUTDIR10}/*/ tmp/
+
+    snippy-core tmp/* --ref ${ILL_CHROMOSOME_REF} --prefix core_${OUTDIR22_NAME}
+
+    rm -rf tmp/
+
+    mv core_${OUTDIR22_NAME}* ${OUTDIR22}
+
+
+## 2.5 ONT Genome Ref
+### 2.5.1 ONT Genome gg ONT Genomes
+    OUTDIR23="results/snippy-core_ONT_genome_ref_vs_ONT_genomes"
+    OUTDIR23_NAME=$(basename ${OUTDIR23})
+    mkdir -p ${OUTDIR23}
+
+    snippy-core ${OUTDIR8}/*/ --ref ${ONT_GENOME_REF} --prefix core_${OUTDIR23_NAME}
+
+    mv core_${OUTDIR23_NAME}* ${OUTDIR23}
+
+### 2.5.2 ONT Genome gg combined Genomes
+    OUTDIR24="results/snippy-core_ONT_genome_ref_vs_combined_genomes"
+    OUTDIR24_NAME=$(basename ${OUTDIR24})
+    mkdir -p ${OUTDIR24}
+
+    mkdir tmp
+    mv ${OUTDIR7}/*/ tmp/
+    mv ${OUTDIR8}/*/ tmp/
+
+    snippy-core tmp/* --ref ${ONT_GENOME_REF} --prefix core_${OUTDIR24_NAME}
+    
+    rm -rf tmp/
+
+    mv core_${OUTDIR24_NAME}* ${OUTDIR24}
+
+## 2.6 ONT Chromosome Ref
+### 2.6.1 ONT Chromosome Ref gg ONT Chromosomes
+    OUTDIR25="results/snippy-core_ONT_chromosome_ref_vs_ONT_chromosomes"
+    OUTDIR25_NAME=$(basename ${OUTDIR25})
+    mkdir -p ${OUTDIR25}
+
+    snippy-core ${OUTDIR12}/*/ --ref ${ONT_GENOME_REF} --prefix core_${OUTDIR25_NAME}
+
+    mv core_${OUTDIR25_NAME}* ${OUTDIR25}
+
+### 2.6.2 ONT Chromosome Ref gg combined Chromosomes
+    OUTDIR26="results/snippy-core_ONT_chromosome_ref_vs_combined_chromosomes"
+    OUTDIR26_NAME=$(basename ${OUTDIR26})
+    mkdir -p ${OUTDIR26}
+
+    mkdir tmp
+    mv ${OUTDIR11}/*/ tmp/
+    mv ${OUTDIR12}/*/ tmp/
+
+    snippy-core tmp/* --ref ${ONT_GENOME_REF} --prefix core_${OUTDIR26_NAME}
+
+    mv core_${OUTDIR26_NAME}* ${OUTDIR26}
+
+################################################
