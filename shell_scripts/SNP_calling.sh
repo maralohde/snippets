@@ -210,11 +210,15 @@ apt-get install -y bc bsdmainutils
             mv ${FASTA_NAME}/ ${OUTDIR6}
         done
 
+    #removing ref vs ref dir for snippy_core
+        rm -rf ${OUTDIR6}/${ONT_GENOME_REF_NAME}    
+
     #replacing all blanks with 0
         sed -E 's/(^|;)(;|$)/\10\2/g; s/(^|;)(;|$)/\10\2/g' ${OUTDIR6}/${OUTDIR6_NAME}.csv > ${OUTDIR6}/SNP_resume_${OUTDIR6_NAME}.csv
         
     #removing ref vs ref from summary
-        sed "/${ILL_GENOME_REF_NAME};${ILL_GENOME_REF_NAME};/d" ${OUTDIR6}/SNP_resume_${OUTDIR6_NAME}.csv > ${OUTDIR6}/SNP_resume_${OUTDIR6_NAME}_modified.csv 
+        sed "/${ILL_GENOME_REF_NAME};${ONT_GENOME_REF_NAME};/d" ${OUTDIR6}/SNP_resume_${OUTDIR6_NAME}.csv > ${OUTDIR6}/SNP_resume_${OUTDIR6_NAME}_modified.csv 
+
 
     for SNIPPY_6 in ${OUTDIR6}/*_modified.csv
         do
@@ -240,12 +244,15 @@ apt-get install -y bc bsdmainutils
             echo "${ONT_GENOME_REF_NAME};${FASTA_NAME};$VALUE" >> ${OUTDIR7}/${OUTDIR7_NAME}.csv
             mv ${FASTA_NAME}/ ${OUTDIR7}
         done
-        
+
+    #removing ref vs ref dir for snippy_core
+        rm -rf ${OUTDIR7}/${ILL_GENOME_REF_NAME}
+
     #replacing all blanks with 0
         sed -E 's/(^|;)(;|$)/\10\2/g; s/(^|;)(;|$)/\10\2/g' ${OUTDIR7}/${OUTDIR7_NAME}.csv > ${OUTDIR7}/SNP_resume_${OUTDIR7_NAME}.csv
         
     #removing ref vs ref from summary
-        sed "/${ONT_GENOME_REF_NAME};${ONT_GENOME_REF_NAME}/d" ${OUTDIR7}/SNP_resume_${OUTDIR7_NAME}.csv > ${OUTDIR7}/SNP_resume_${OUTDIR7_NAME}_modified.csv 
+        sed "/${ONT_GENOME_REF_NAME};${ILL_GENOME_REF_NAME}/d" ${OUTDIR7}/SNP_resume_${OUTDIR7_NAME}.csv > ${OUTDIR7}/SNP_resume_${OUTDIR7_NAME}_modified.csv 
 
     #summary
     for SNIPPY_7 in ${OUTDIR7}/*_modified.csv
@@ -338,12 +345,15 @@ apt-get install -y bc bsdmainutils
             echo "${ILL_CHROMOSOME_REF_NAME};${FASTA_NAME};$VALUE" >> ${OUTDIR10}/${OUTDIR10_NAME}.csv
             mv ${FASTA_NAME} ${OUTDIR10}
         done
-        
+
+    #removing ref vs ref dir for snippy_core
+        rm -rf ${OUTDIR6}/${ONT_CHROMOSOME_REF_NAME}
+
     #replacing all blanks with 0
         sed -E 's/(^|;)(;|$)/\10\2/g; s/(^|;)(;|$)/\10\2/g' ${OUTDIR10}/${OUTDIR10_NAME}.csv > ${OUTDIR10}/SNP_resume_${OUTDIR10_NAME}.csv
         
     #removing ref vs ref from summary
-        sed "/${ILL_CHROMOSOME_REF_NAME};${ILL_CHROMOSOME_REF_NAME};/d" ${OUTDIR10}/SNP_resume_${OUTDIR10_NAME}.csv > ${OUTDIR10}/SNP_resume_${OUTDIR10_NAME}_modified.csv 
+        sed "/${ILL_CHROMOSOME_REF_NAME};${ONT_CHROMOSOME_REF_NAME};/d" ${OUTDIR10}/SNP_resume_${OUTDIR10_NAME}.csv > ${OUTDIR10}/SNP_resume_${OUTDIR10_NAME}_modified.csv 
 
     #summary
     for SNIPPY_10 in ${OUTDIR10}/*_modified.csv
@@ -371,11 +381,14 @@ apt-get install -y bc bsdmainutils
             mv ${FASTA_NAME}/ ${OUTDIR11}
         done
 
+    #removing ref vs ref dir for snippy_core
+        rm -rf ${OUTDIR11}/${ILL_CHROMOSOME_REF_NAME}
+
     #replacing all blanks with 0
         sed -E 's/(^|;)(;|$)/\10\2/g; s/(^|;)(;|$)/\10\2/g' ${OUTDIR11}/${OUTDIR11_NAME}.csv > ${OUTDIR11}/SNP_resume_${OUTDIR11_NAME}.csv
         
     #removing ref vs ref from summary
-        sed "/${ONT_CHROMOSOME_REF_NAME};${ONT_CHROMOSOME_REF_NAME};/d" ${OUTDIR11}/SNP_resume_${OUTDIR11_NAME}.csv > ${OUTDIR11}/SNP_resume_${OUTDIR11_NAME}_modified.csv 
+        sed "/${ONT_CHROMOSOME_REF_NAME};${ILL_CHROMOSOME_REF_NAME};/d" ${OUTDIR11}/SNP_resume_${OUTDIR11_NAME}.csv > ${OUTDIR11}/SNP_resume_${OUTDIR11_NAME}_modified.csv 
 
     #summary
     for SNIPPY_11 in ${OUTDIR11}/*_modified.csv
@@ -927,3 +940,7 @@ echo "ONT;COMBINED_ONLY_ONT;${MEDIAN_24_ONT};${MEDIAN_26_ONT}" >> results/summar
 
 ################################################
 chmod -R 777 results/
+################################################
+    echo "############"
+    echo -e "\033[1m#  DONE  #\033[22m"
+    echo "############"
