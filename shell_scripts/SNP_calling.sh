@@ -653,12 +653,12 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
         done
         
     # summary ONT
-    for CORE_15_ONT in ${OUTDIR15}/core_${OUTDIR15_NAME}_ONT_only.txt
+    for CORE_20_ONT in ${OUTDIR20}/core_${OUTDIR20_NAME}_ONT_only.txt
         do
 
-            SUM_15_ONT=$(cat ${CORE_15_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_15_ONT=$(cat ${CORE_15_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_15_ONT=$(cat ${CORE_15_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_20_ONT=$(cat ${CORE_20_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
+            AVERAGE_20_ONT=$(cat ${CORE_20_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_20_ONT=$(cat ${CORE_20_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
 
@@ -723,12 +723,12 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
         done
         
     # summary ONT
-    for CORE_15_ONT in ${OUTDIR15}/core_${OUTDIR15_NAME}_ONT_only.txt
+    for CORE_22_ONT in ${OUTDIR22}/core_${OUTDIR22_NAME}_ONT_only.txt
         do
 
-            SUM_15_ONT=$(cat ${CORE_15_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_15_ONT=$(cat ${CORE_15_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_15_ONT=$(cat ${CORE_15_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_22_ONT=$(cat ${CORE_22_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
+            AVERAGE_22_ONT=$(cat ${CORE_22_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_22_ONT=$(cat ${CORE_22_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
 
