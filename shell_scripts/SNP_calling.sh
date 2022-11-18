@@ -2,6 +2,7 @@
 #!/usr/bin/env bash
 
 # run inside snippy Docker: docker run --rm -it -v $PWD:/input nanozoo/snippy:4.4.1--9debffd
+
 # Example: 
 # bash script.sh illumina_genome_fasta/ illumina_chromosome_fasta/ ont_genome_fasta/ ont_chromosome_fasta/ hybrid_genome.fasta hybrid_chromosome.fasta illumina_chromosome_ref.fasta ont_ref.fasta
 # $1 $2 $3 $4 $5 $6 $7 $8 $9 $10
@@ -460,9 +461,9 @@ CPUS="20"
     for CORE_13 in ${OUTDIR13}/*.txt
         do
 
-            SUM_13=$(cat ${CORE_13} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_13=$(cat ${CORE_13} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_13=$(cat ${CORE_13} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_13=$(cat ${CORE_13} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1| paste -s -d+ |bc)
+            AVERAGE_13=$(cat ${CORE_13} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_13=$(cat ${CORE_13} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
 
@@ -479,9 +480,9 @@ CPUS="20"
     for CORE_14 in ${OUTDIR14}/*.txt
         do
 
-            SUM_14=$(cat ${CORE_14} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_14=$(cat ${CORE_14} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_14=$(cat ${CORE_14} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_14=$(cat ${CORE_14} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | paste -s -d+ |bc)
+            AVERAGE_14=$(cat ${CORE_14} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_14=$(cat ${CORE_14} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
 
@@ -511,7 +512,7 @@ CPUS="20"
 
             SUM_15_ILL=$(cat ${CORE_15_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
             AVERAGE_15_ILL=$(cat ${CORE_15_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_15_ILL=$(cat ${CORE_15_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            MEDIAN_15_ILL=$(cat ${CORE_15_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2  | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
         
@@ -519,14 +520,14 @@ CPUS="20"
     for CORE_15_ONT in ${OUTDIR15}/core_${OUTDIR15_NAME}_ONT_only.txt
         do
 
-            SUM_15_ONT=$(cat ${CORE_15_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
+            SUM_15_ONT=$(cat ${CORE_15_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2  | paste -s -d+ |bc)
             AVERAGE_15_ONT=$(cat ${CORE_15_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
             MEDIAN_15_ONT=$(cat ${CORE_15_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
 
 ## 2.2 Hybrid Chromosome Ref
-    echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
+echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
 ### 2.2.1 Hybrid Chromosome Ref gg Ill Chromosomes
     OUTDIR16="results/snippy-core_${HYBRID_CHROMOSOME_REF_NAME}_ref_vs_Ill_chromosomes"
     OUTDIR16_NAME=$(basename ${OUTDIR16})
@@ -540,14 +541,14 @@ CPUS="20"
     for CORE_16 in ${OUTDIR16}/*.txt
         do
 
-            SUM_16=$(cat ${CORE_16} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_16=$(cat ${CORE_16} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_16=$(cat ${CORE_16} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_16=$(cat ${CORE_16} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | paste -s -d+ |bc)
+            AVERAGE_16=$(cat ${CORE_16} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_16=$(cat ${CORE_16} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
 
 ### 2.2.2 Hybrid Chromosome Ref gg ONT Chromosomes
-    OUTDIR17="results/snippy-core_index_${HYBRID_CHROMOSOME_REF_NAME}_vs_ONT_chromosomes"
+    OUTDIR17="results/snippy-core_${HYBRID_CHROMOSOME_REF_NAME}_vs_ONT_chromosomes"
     OUTDIR17_NAME=$(basename ${OUTDIR17})
     mkdir -p ${OUTDIR17}
 
@@ -559,9 +560,9 @@ CPUS="20"
     for CORE_17 in ${OUTDIR17}/*.txt
         do
 
-            SUM_17=$(cat ${CORE_17} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_17=$(cat ${CORE_17} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_17=$(cat ${CORE_17} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_17=$(cat ${CORE_17} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | paste -s -d+ |bc)
+            AVERAGE_17=$(cat ${CORE_17} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_17=$(cat ${CORE_17} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
 
@@ -619,9 +620,9 @@ CPUS="20"
     for CORE_19 in ${OUTDIR19}/*.txt
         do
 
-            SUM_19=$(cat ${CORE_19} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_19=$(cat ${CORE_19} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_19=$(cat ${CORE_19} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_19=$(cat ${CORE_19} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | paste -s -d+ |bc)
+            AVERAGE_19=$(cat ${CORE_19} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_19=$(cat ${CORE_19} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done    
 
@@ -670,9 +671,9 @@ CPUS="20"
     for CORE_20 in ${OUTDIR20}/*.txt
         do
 
-            SUM_20=$(cat ${CORE_20} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_20=$(cat ${CORE_20} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_20=$(cat ${CORE_20} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_20=$(cat ${CORE_20} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | paste -s -d+ |bc)
+            AVERAGE_20=$(cat ${CORE_20} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_20=$(cat ${CORE_20} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done   
 
@@ -690,9 +691,9 @@ CPUS="20"
     for CORE_21 in ${OUTDIR21}/*.txt
         do
 
-            SUM_21=$(cat ${CORE_21} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_21=$(cat ${CORE_21} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_21=$(cat ${CORE_21} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_21=$(cat ${CORE_21} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | paste -s -d+ |bc)
+            AVERAGE_21=$(cat ${CORE_21} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_21=$(cat ${CORE_21} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done  
 
@@ -721,7 +722,7 @@ CPUS="20"
         do
 
             SUM_22_ILL=$(cat ${CORE_22_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_22_ILL=$(cat ${CORE_22_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            AVERAGE_22_ILL=$(cat ${CORE_22_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 |awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
             MEDIAN_22_ILL=$(cat ${CORE_22_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
@@ -750,9 +751,9 @@ CPUS="20"
     for CORE_23 in ${OUTDIR23}/*.txt
         do
 
-            SUM_23=$(cat ${CORE_23} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_23=$(cat ${CORE_23} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_23=$(cat ${CORE_23} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_23=$(cat ${CORE_23} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | paste -s -d+ |bc)
+            AVERAGE_23=$(cat ${CORE_23} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 |awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_23=$(cat ${CORE_23} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done 
 
@@ -781,7 +782,7 @@ CPUS="20"
         do
 
             SUM_24_ILL=$(cat ${CORE_24_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_24_ILL=$(cat ${CORE_24_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            AVERAGE_24_ILL=$(cat ${CORE_24_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 |awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
             MEDIAN_24_ILL=$(cat ${CORE_24_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
@@ -792,7 +793,7 @@ CPUS="20"
 
             SUM_24_ONT=$(cat ${CORE_24_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
             AVERAGE_24_ONT=$(cat ${CORE_24_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_24_ONT=$(cat ${CORE_24_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            MEDIAN_24_ONT=$(cat ${CORE_24_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 |sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done 
 
@@ -810,9 +811,9 @@ CPUS="20"
     for CORE_25 in ${OUTDIR25}/*.txt
         do
 
-            SUM_25=$(cat ${CORE_25} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_25=$(cat ${CORE_25} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_25=$(cat ${CORE_25} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_25=$(cat ${CORE_25} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 |paste -s -d+ |bc)
+            AVERAGE_25=$(cat ${CORE_25} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 |awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_25=$(cat ${CORE_25} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 |sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done 
 
@@ -832,7 +833,6 @@ CPUS="20"
     mv core_${OUTDIR26_NAME}* ${OUTDIR26}
 
     # separate Ill and ONT results
-
     cat ${OUTDIR26}/*.txt | grep "sup" >> ${OUTDIR26}/core_${OUTDIR26_NAME}_ONT_only.txt
     cat ${OUTDIR26}/*.txt | grep "ill" >> ${OUTDIR26}/core_${OUTDIR26_NAME}_ILL_only.txt
 
@@ -862,11 +862,9 @@ CPUS="20"
     echo "############"
 
 # 3. SUMMARY SNIPPY
-
-mkdir results/summary_snippy/
+    mkdir results/summary_snippy/
 
 ## 3.1 Snippy SUM summary
-
     echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy/snippy_summary_SUM.csv
     echo "INDEX_HYBRID;ILL;${SUM_1};${SUM_3}" >> results/summary_snippy/snippy_summary_SUM.csv
     echo "INDEX_HYBRID;ONT;${SUM_2};${SUM_4}" >> results/summary_snippy/snippy_summary_SUM.csv
@@ -876,7 +874,6 @@ mkdir results/summary_snippy/
     echo "ONT;ONT;${SUM_8};${SUM_12}" >> results/summary_snippy/snippy_summary_SUM.csv
 
 ## 3.2 Snippy AVERAGE summary
-
     echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy/snippy_summary_AVERAGE.csv
     echo "INDEX_HYBRID;ILL;${AVERAGE_1};${AVERAGE_3}" >> results/summary_snippy/snippy_summary_AVERAGE.csv
     echo "INDEX_HYBRID;ONT;${AVERAGE_2};${AVERAGE_4}" >> results/summary_snippy/snippy_summary_AVERAGE.csv
@@ -886,7 +883,6 @@ mkdir results/summary_snippy/
     echo "ONT;ONT;${AVERAGE_8};${AVERAGE_12}" >> results/summary_snippy/snippy_summary_AVERAGE.csv
 
 ## 3.3 Snippy MEDIAN summary
-
     echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy/snippy_summary_MEDIAN.csv
     echo "INDEX_HYBRID;ILL;${MEDIAN_1};${MEDIAN_3}" >> results/summary_snippy/snippy_summary_MEDIAN.csv
     echo "INDEX_HYBRID;ONT;${MEDIAN_2};${MEDIAN_4}" >> results/summary_snippy/snippy_summary_MEDIAN.csv
@@ -896,11 +892,9 @@ mkdir results/summary_snippy/
     echo "ONT;ONT;${MEDIAN_8};${MEDIAN_12}" >> results/summary_snippy/snippy_summary_MEDIAN.csv
 
 # 4. SUMMARY SNIPPY-CORE
-
-mkdir results/summary_snippy-core
+    mkdir results/summary_snippy-core
 
 ## 4.1 Snippy-core SUM summary
-
     echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
     echo "INDEX_HYBRID;ILL;${SUM_13};${SUM_16}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
     echo "INDEX_HYBRID;ONT;${SUM_14};${SUM_17}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
@@ -913,9 +907,7 @@ mkdir results/summary_snippy-core
     echo "ONT;COMBINED_ONLY_ILL;${SUM_24_ILL};${SUM_26_ILL}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
     echo "ONT;COMBINED_ONLY_ONT;${SUM_24_ONT};${SUM_26_ONT}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
 
-
 ## 4.2 Snippy-core AVERAGE summary
-
     echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
     echo "INDEX_HYBRID;ILL;${AVERAGE_13};${AVERAGE_16}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
     echo "INDEX_HYBRID;ONT;${AVERAGE_14};${AVERAGE_17}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
@@ -929,7 +921,6 @@ mkdir results/summary_snippy-core
     echo "ONT;COMBINED_ONLY_ONT;${AVERAGE_24_ONT};${AVERAGE_26_ONT}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
 
 ## 4.3 Snippy-core MEDIAN summary
-
     echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
     echo "INDEX_HYBRID;ILL;${MEDIAN_13};${MEDIAN_16}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
     echo "INDEX_HYBRID;ONT;${MEDIAN_14};${MEDIAN_17}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
@@ -943,7 +934,7 @@ mkdir results/summary_snippy-core
     echo "ONT;COMBINED_ONLY_ONT;${MEDIAN_24_ONT};${MEDIAN_26_ONT}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
 
 ################################################
-    chmod -R 777 results/
+chmod -R 777 results/
 ################################################
     echo "############"
     echo -e "\033[1m#  DONE  #\033[22m"
