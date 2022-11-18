@@ -45,6 +45,10 @@ apt-get install -y bc bsdmainutils
     ONT_CHROMOSOME_REF=${10}
     ONT_CHROMOSOME_REF_NAME=$(basename -s .fasta ${ONT_CHROMOSOME_REF})
 
+# CPUS
+
+CPUS="20"
+
 ################################################
     echo "############"
     echo -e "\033[1m#  SNIPPY  #\033[22m"
@@ -61,7 +65,7 @@ apt-get install -y bc bsdmainutils
         for FASTA in ${ILL_GENOME_FASTA_DIR}/*.fasta
         do
             FASTA_NAME=$(basename -s .fasta ${FASTA})
-            snippy --cpus 20 --outdir ${FASTA_NAME} --ref ${HYBRID_GENOME_REF} --ctgs ${FASTA}
+            snippy --cpus ${CPUS} --outdir ${FASTA_NAME} --ref ${HYBRID_GENOME_REF} --ctgs ${FASTA}
             VALUE=$(grep "Variant-SNP" ${FASTA_NAME}/snps.txt | cut -f2)
             echo "${HYBRID_GENOME_REF_NAME};${FASTA_NAME};$VALUE" >> ${OUTDIR1}/${OUTDIR1_NAME}.csv
             mv ${FASTA_NAME}/ ${OUTDIR1}
@@ -88,7 +92,7 @@ apt-get install -y bc bsdmainutils
         for FASTA in ${ONT_GENOME_FASTA_DIR}/*.fasta
         do
             FASTA_NAME=$(basename -s .fasta ${FASTA})
-            snippy --cpus 20 --outdir ${FASTA_NAME} --ref ${HYBRID_GENOME_REF} --ctgs ${FASTA}
+            snippy --cpus ${CPUS} --outdir ${FASTA_NAME} --ref ${HYBRID_GENOME_REF} --ctgs ${FASTA}
             VALUE=$(grep "Variant-SNP" ${FASTA_NAME}/snps.txt | cut -f2)
             echo "${HYBRID_GENOME_REF_NAME};${FASTA_NAME};$VALUE" >> ${OUTDIR2}/${OUTDIR2_NAME}.csv
             mv ${FASTA_NAME}/ ${OUTDIR2}
@@ -117,7 +121,7 @@ apt-get install -y bc bsdmainutils
         for FASTA in ${ILL_CHROMOSOME_FASTA_DIR}/*.fasta
         do
             FASTA_NAME=$(basename -s .fasta ${FASTA})
-            snippy --cpus 20 --outdir ${FASTA_NAME} --ref ${HYBRID_CHROMOSOME_REF} --ctgs ${FASTA}
+            snippy --cpus ${CPUS} --outdir ${FASTA_NAME} --ref ${HYBRID_CHROMOSOME_REF} --ctgs ${FASTA}
             VALUE=$(grep "Variant-SNP" ${FASTA_NAME}/snps.txt | cut -f2)
             echo "${HYBRID_CHROMOSOME_REF_NAME};${FASTA_NAME};$VALUE" >> ${OUTDIR3}/${OUTDIR3_NAME}.csv
             mv ${FASTA_NAME}/ ${OUTDIR3}
@@ -143,7 +147,7 @@ apt-get install -y bc bsdmainutils
         for FASTA in ${ONT_CHROMOSOME_FASTA_DIR}/*.fasta
         do
             FASTA_NAME=$(basename -s .fasta ${FASTA})
-            snippy --cpus 20 --outdir ${FASTA_NAME} --ref ${HYBRID_CHROMOSOME_REF} --ctgs ${FASTA}
+            snippy --cpus ${CPUS} --outdir ${FASTA_NAME} --ref ${HYBRID_CHROMOSOME_REF} --ctgs ${FASTA}
             VALUE=$(grep "Variant-SNP" ${FASTA_NAME}/snps.txt | cut -f2)
             echo "${HYBRID_CHROMOSOME_REF_NAME};${FASTA_NAME};$VALUE" >> ${OUTDIR4}/${OUTDIR4_NAME}.csv
             mv ${FASTA_NAME}/ ${OUTDIR4}
@@ -172,7 +176,7 @@ apt-get install -y bc bsdmainutils
         for FASTA in ${ILL_GENOME_FASTA_DIR}/*.fasta
         do
             FASTA_NAME=$(basename -s .fasta ${FASTA})
-            snippy --cpus 20 --outdir ${FASTA_NAME} --ref ${ILL_GENOME_REF} --ctgs ${FASTA}
+            snippy --cpus ${CPUS} --outdir ${FASTA_NAME} --ref ${ILL_GENOME_REF} --ctgs ${FASTA}
             VALUE=$(grep "Variant-SNP" ${FASTA_NAME}/snps.txt | cut -f2)
             echo "${ILL_GENOME_REF_NAME};${FASTA_NAME};$VALUE" >> ${OUTDIR5}/${OUTDIR5_NAME}.csv
             mv ${FASTA_NAME}/ ${OUTDIR5}
@@ -204,7 +208,7 @@ apt-get install -y bc bsdmainutils
         for FASTA in ${ONT_GENOME_FASTA_DIR}/*.fasta
         do
             FASTA_NAME=$(basename -s .fasta ${FASTA})
-            snippy --cpus 20 --outdir ${FASTA_NAME} --ref ${ILL_GENOME_REF} --ctgs ${FASTA}
+            snippy --cpus ${CPUS} --outdir ${FASTA_NAME} --ref ${ILL_GENOME_REF} --ctgs ${FASTA}
             VALUE=$(grep "Variant-SNP" ${FASTA_NAME}/snps.txt | cut -f2)
             echo "${ILL_GENOME_REF_NAME};${FASTA_NAME};$VALUE" >> ${OUTDIR6}/${OUTDIR6_NAME}.csv
             mv ${FASTA_NAME}/ ${OUTDIR6}
@@ -239,7 +243,7 @@ apt-get install -y bc bsdmainutils
         for FASTA in ${ILL_GENOME_FASTA_DIR}/*.fasta
         do
             FASTA_NAME=$(basename -s .fasta ${FASTA})
-            snippy --cpus 20 --outdir ${FASTA_NAME} --ref ${ONT_GENOME_REF} --ctgs ${FASTA}
+            snippy --cpus ${CPUS} --outdir ${FASTA_NAME} --ref ${ONT_GENOME_REF} --ctgs ${FASTA}
             VALUE=$(grep "Variant-SNP" ${FASTA_NAME}/snps.txt | cut -f2)
             echo "${ONT_GENOME_REF_NAME};${FASTA_NAME};$VALUE" >> ${OUTDIR7}/${OUTDIR7_NAME}.csv
             mv ${FASTA_NAME}/ ${OUTDIR7}
@@ -272,7 +276,7 @@ apt-get install -y bc bsdmainutils
         for FASTA in ${ONT_GENOME_FASTA_DIR}/*.fasta
         do
             FASTA_NAME=$(basename -s .fasta ${FASTA})
-            snippy --cpus 20 --outdir ${FASTA_NAME} --ref ${ONT_GENOME_REF} --ctgs ${FASTA}
+            snippy --cpus ${CPUS} --outdir ${FASTA_NAME} --ref ${ONT_GENOME_REF} --ctgs ${FASTA}
             VALUE=$(grep "Variant-SNP" ${FASTA_NAME}/snps.txt | cut -f2)
             echo "${ONT_GENOME_REF_NAME};${FASTA_NAME};$VALUE" >> ${OUTDIR8}/${OUTDIR8_NAME}.csv
             mv ${FASTA_NAME}/ ${OUTDIR8}
@@ -307,7 +311,7 @@ apt-get install -y bc bsdmainutils
         for FASTA in ${ILL_CHROMOSOME_FASTA_DIR}/*.fasta
         do
             FASTA_NAME=$(basename -s .fasta ${FASTA})
-            snippy --cpus 20 --outdir ${FASTA_NAME} --ref ${ILL_CHROMOSOME_REF} --ctgs ${FASTA}
+            snippy --cpus ${CPUS} --outdir ${FASTA_NAME} --ref ${ILL_CHROMOSOME_REF} --ctgs ${FASTA}
             VALUE=$(grep "Variant-SNP" ${FASTA_NAME}/snps.txt | cut -f2)
             echo "${ILL_CHROMOSOME_REF_NAME};${FASTA_NAME};$VALUE" >> ${OUTDIR9}/${OUTDIR9_NAME}.csv
             mv ${FASTA_NAME}/ ${OUTDIR9}
@@ -340,7 +344,7 @@ apt-get install -y bc bsdmainutils
         for FASTA in ${ONT_CHROMOSOME_FASTA_DIR}/*.fasta
         do
             FASTA_NAME=$(basename -s .fasta ${FASTA})
-            snippy --cpus 20 --outdir ${FASTA_NAME} --ref ${ILL_CHROMOSOME_REF} --ctgs ${FASTA}
+            snippy --cpus ${CPUS} --outdir ${FASTA_NAME} --ref ${ILL_CHROMOSOME_REF} --ctgs ${FASTA}
             VALUE=$(grep "Variant-SNP" ${FASTA_NAME}/snps.txt | cut -f2)
             echo "${ILL_CHROMOSOME_REF_NAME};${FASTA_NAME};$VALUE" >> ${OUTDIR10}/${OUTDIR10_NAME}.csv
             mv ${FASTA_NAME} ${OUTDIR10}
@@ -375,7 +379,7 @@ apt-get install -y bc bsdmainutils
         for FASTA in ${ILL_CHROMOSOME_FASTA_DIR}/*.fasta
         do
             FASTA_NAME=$(basename -s .fasta ${FASTA})
-            snippy --cpus 20 --outdir ${FASTA_NAME} --ref ${ONT_CHROMOSOME_REF} --ctgs ${FASTA}
+            snippy --cpus ${CPUS} --outdir ${FASTA_NAME} --ref ${ONT_CHROMOSOME_REF} --ctgs ${FASTA}
             VALUE=$(grep "Variant-SNP" ${FASTA_NAME}/snps.txt | cut -f2)
             echo "${ONT_CHROMOSOME_REF_NAME};${FASTA_NAME};$VALUE" >> ${OUTDIR11}/${OUTDIR11_NAME}.csv
             mv ${FASTA_NAME}/ ${OUTDIR11}
@@ -408,7 +412,7 @@ apt-get install -y bc bsdmainutils
         for FASTA in ${ONT_CHROMOSOME_FASTA_DIR}/*.fasta
         do
             FASTA_NAME=$(basename -s .fasta ${FASTA})
-            snippy --cpus 20 --outdir ${FASTA_NAME} --ref ${ONT_CHROMOSOME_REF} --ctgs ${FASTA}
+            snippy --cpus ${CPUS} --outdir ${FASTA_NAME} --ref ${ONT_CHROMOSOME_REF} --ctgs ${FASTA}
             VALUE=$(grep "Variant-SNP" ${FASTA_NAME}/snps.txt | cut -f2)
             echo "${ONT_CHROMOSOME_REF_NAME};${FASTA_NAME};$VALUE" >> ${OUTDIR12}/${OUTDIR12_NAME}.csv
             mv ${FASTA_NAME}/ ${OUTDIR12}
@@ -522,7 +526,7 @@ apt-get install -y bc bsdmainutils
         done
 
 ## 2.2 Hybrid Chromosome Ref
-echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
+    echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
 ### 2.2.1 Hybrid Chromosome Ref gg Ill Chromosomes
     OUTDIR16="results/snippy-core_${HYBRID_CHROMOSOME_REF_NAME}_ref_vs_Ill_chromosomes"
     OUTDIR16_NAME=$(basename ${OUTDIR16})
@@ -863,33 +867,33 @@ mkdir results/summary_snippy/
 
 ## 3.1 Snippy SUM summary
 
-echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy/snippy_summary_SUM.csv
-echo "INDEX_HYBRID;ILL;${SUM_1};${SUM_3}" >> results/summary_snippy/snippy_summary_SUM.csv
-echo "INDEX_HYBRID;ONT;${SUM_2};${SUM_4}" >> results/summary_snippy/snippy_summary_SUM.csv
-echo "ILL;ILL;${SUM_5};${SUM_9}" >> results/summary_snippy/snippy_summary_SUM.csv
-echo "ILL;ONT;${SUM_6};${SUM_10}" >> results/summary_snippy/snippy_summary_SUM.csv
-echo "ONT;ILL;${SUM_7};${SUM_11}" >> results/summary_snippy/snippy_summary_SUM.csv
-echo "ONT;ONT;${SUM_8};${SUM_12}" >> results/summary_snippy/snippy_summary_SUM.csv
+    echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy/snippy_summary_SUM.csv
+    echo "INDEX_HYBRID;ILL;${SUM_1};${SUM_3}" >> results/summary_snippy/snippy_summary_SUM.csv
+    echo "INDEX_HYBRID;ONT;${SUM_2};${SUM_4}" >> results/summary_snippy/snippy_summary_SUM.csv
+    echo "ILL;ILL;${SUM_5};${SUM_9}" >> results/summary_snippy/snippy_summary_SUM.csv
+    echo "ILL;ONT;${SUM_6};${SUM_10}" >> results/summary_snippy/snippy_summary_SUM.csv
+    echo "ONT;ILL;${SUM_7};${SUM_11}" >> results/summary_snippy/snippy_summary_SUM.csv
+    echo "ONT;ONT;${SUM_8};${SUM_12}" >> results/summary_snippy/snippy_summary_SUM.csv
 
 ## 3.2 Snippy AVERAGE summary
 
-echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy/snippy_summary_AVERAGE.csv
-echo "INDEX_HYBRID;ILL;${AVERAGE_1};${AVERAGE_3}" >> results/summary_snippy/snippy_summary_AVERAGE.csv
-echo "INDEX_HYBRID;ONT;${AVERAGE_2};${AVERAGE_4}" >> results/summary_snippy/snippy_summary_AVERAGE.csv
-echo "ILL;ILL;${AVERAGE_5};${AVERAGE_9}" >> results/summary_snippy/snippy_summary_AVERAGE.csv
-echo "ILL;ONT;${AVERAGE_6};${AVERAGE_10}" >> results/summary_snippy/snippy_summary_AVERAGE.csv
-echo "ONT;ILL;${AVERAGE_7};${AVERAGE_11}" >> results/summary_snippy/snippy_summary_AVERAGE.csv
-echo "ONT;ONT;${AVERAGE_8};${AVERAGE_12}" >> results/summary_snippy/snippy_summary_AVERAGE.csv
+    echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy/snippy_summary_AVERAGE.csv
+    echo "INDEX_HYBRID;ILL;${AVERAGE_1};${AVERAGE_3}" >> results/summary_snippy/snippy_summary_AVERAGE.csv
+    echo "INDEX_HYBRID;ONT;${AVERAGE_2};${AVERAGE_4}" >> results/summary_snippy/snippy_summary_AVERAGE.csv
+    echo "ILL;ILL;${AVERAGE_5};${AVERAGE_9}" >> results/summary_snippy/snippy_summary_AVERAGE.csv
+    echo "ILL;ONT;${AVERAGE_6};${AVERAGE_10}" >> results/summary_snippy/snippy_summary_AVERAGE.csv
+    echo "ONT;ILL;${AVERAGE_7};${AVERAGE_11}" >> results/summary_snippy/snippy_summary_AVERAGE.csv
+    echo "ONT;ONT;${AVERAGE_8};${AVERAGE_12}" >> results/summary_snippy/snippy_summary_AVERAGE.csv
 
 ## 3.3 Snippy MEDIAN summary
 
-echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy/snippy_summary_MEDIAN.csv
-echo "INDEX_HYBRID;ILL;${MEDIAN_1};${MEDIAN_3}" >> results/summary_snippy/snippy_summary_MEDIAN.csv
-echo "INDEX_HYBRID;ONT;${MEDIAN_2};${MEDIAN_4}" >> results/summary_snippy/snippy_summary_MEDIAN.csv
-echo "ILL;ILL;${MEDIAN_5};${MEDIAN_9}" >> results/summary_snippy/snippy_summary_MEDIAN.csv
-echo "ILL;ONT;${MEDIAN_6};${MEDIAN_10}" >> results/summary_snippy/snippy_summary_MEDIAN.csv
-echo "ONT;ILL;${MEDIAN_7};${MEDIAN_11}" >> results/summary_snippy/snippy_summary_MEDIAN.csv
-echo "ONT;ONT;${MEDIAN_8};${MEDIAN_12}" >> results/summary_snippy/snippy_summary_MEDIAN.csv
+    echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy/snippy_summary_MEDIAN.csv
+    echo "INDEX_HYBRID;ILL;${MEDIAN_1};${MEDIAN_3}" >> results/summary_snippy/snippy_summary_MEDIAN.csv
+    echo "INDEX_HYBRID;ONT;${MEDIAN_2};${MEDIAN_4}" >> results/summary_snippy/snippy_summary_MEDIAN.csv
+    echo "ILL;ILL;${MEDIAN_5};${MEDIAN_9}" >> results/summary_snippy/snippy_summary_MEDIAN.csv
+    echo "ILL;ONT;${MEDIAN_6};${MEDIAN_10}" >> results/summary_snippy/snippy_summary_MEDIAN.csv
+    echo "ONT;ILL;${MEDIAN_7};${MEDIAN_11}" >> results/summary_snippy/snippy_summary_MEDIAN.csv
+    echo "ONT;ONT;${MEDIAN_8};${MEDIAN_12}" >> results/summary_snippy/snippy_summary_MEDIAN.csv
 
 # 4. SUMMARY SNIPPY-CORE
 
@@ -897,49 +901,49 @@ mkdir results/summary_snippy-core
 
 ## 4.1 Snippy-core SUM summary
 
-echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
-echo "INDEX_HYBRID;ILL;${SUM_13};${SUM_16}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
-echo "INDEX_HYBRID;ONT;${SUM_14};${SUM_17}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
-echo "INDEX_HYBRID;COMBINED_ONLY_ILL;${SUM_15_ILL};${SUM_18_ILL}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
-echo "INDEX_HYBRID;COMBINED_ONLY_ONT;${SUM_15_ONT};${SUM_18_ONT}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
-echo "ILL;ILL;${SUM_19};${SUM_21}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
-echo "ILL;COMBINED_ONLY_ILL;${SUM_20_ILL};${SUM_22_ILL}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
-echo "ILL;COMBINED_ONLY_ONT;${SUM_20_ONT};${SUM_22_ONT}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
-echo "ONT;ONT;${SUM_23};${SUM_25}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
-echo "ONT;COMBINED_ONLY_ILL;${SUM_24_ILL};${SUM_26_ILL}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
-echo "ONT;COMBINED_ONLY_ONT;${SUM_24_ONT};${SUM_26_ONT}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
+    echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
+    echo "INDEX_HYBRID;ILL;${SUM_13};${SUM_16}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
+    echo "INDEX_HYBRID;ONT;${SUM_14};${SUM_17}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
+    echo "INDEX_HYBRID;COMBINED_ONLY_ILL;${SUM_15_ILL};${SUM_18_ILL}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
+    echo "INDEX_HYBRID;COMBINED_ONLY_ONT;${SUM_15_ONT};${SUM_18_ONT}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
+    echo "ILL;ILL;${SUM_19};${SUM_21}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
+    echo "ILL;COMBINED_ONLY_ILL;${SUM_20_ILL};${SUM_22_ILL}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
+    echo "ILL;COMBINED_ONLY_ONT;${SUM_20_ONT};${SUM_22_ONT}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
+    echo "ONT;ONT;${SUM_23};${SUM_25}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
+    echo "ONT;COMBINED_ONLY_ILL;${SUM_24_ILL};${SUM_26_ILL}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
+    echo "ONT;COMBINED_ONLY_ONT;${SUM_24_ONT};${SUM_26_ONT}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
 
 
 ## 4.2 Snippy-core AVERAGE summary
 
-echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
-echo "INDEX_HYBRID;ILL;${AVERAGE_13};${AVERAGE_16}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
-echo "INDEX_HYBRID;ONT;${AVERAGE_14};${AVERAGE_17}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
-echo "INDEX_HYBRID;COMBINED_ONLY_ILL;${AVERAGE_15_ILL};${AVERAGE_18_ILL}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
-echo "INDEX_HYBRID;COMBINED_ONLY_ONT;${AVERAGE_15_ONT};${AVERAGE_18_ONT}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
-echo "ILL;ILL;${AVERAGE_19};${AVERAGE_21}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
-echo "ILL;COMBINED_ONLY_ILL;${AVERAGE_20_ILL};${AVERAGE_22_ILL}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
-echo "ILL;COMBINED_ONLY_ONT;${AVERAGE_20_ONT};${AVERAGE_22_ONT}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
-echo "ONT;ONT;${AVERAGE_23};${AVERAGE_25}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
-echo "ONT;COMBINED_ONLY_ILL;${AVERAGE_24_ILL};${AVERAGE_26_ILL}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
-echo "ONT;COMBINED_ONLY_ONT;${AVERAGE_24_ONT};${AVERAGE_26_ONT}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
+    echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
+    echo "INDEX_HYBRID;ILL;${AVERAGE_13};${AVERAGE_16}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
+    echo "INDEX_HYBRID;ONT;${AVERAGE_14};${AVERAGE_17}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
+    echo "INDEX_HYBRID;COMBINED_ONLY_ILL;${AVERAGE_15_ILL};${AVERAGE_18_ILL}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
+    echo "INDEX_HYBRID;COMBINED_ONLY_ONT;${AVERAGE_15_ONT};${AVERAGE_18_ONT}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
+    echo "ILL;ILL;${AVERAGE_19};${AVERAGE_21}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
+    echo "ILL;COMBINED_ONLY_ILL;${AVERAGE_20_ILL};${AVERAGE_22_ILL}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
+    echo "ILL;COMBINED_ONLY_ONT;${AVERAGE_20_ONT};${AVERAGE_22_ONT}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
+    echo "ONT;ONT;${AVERAGE_23};${AVERAGE_25}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
+    echo "ONT;COMBINED_ONLY_ILL;${AVERAGE_24_ILL};${AVERAGE_26_ILL}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
+    echo "ONT;COMBINED_ONLY_ONT;${AVERAGE_24_ONT};${AVERAGE_26_ONT}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
 
 ## 4.3 Snippy-core MEDIAN summary
 
-echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
-echo "INDEX_HYBRID;ILL;${MEDIAN_13};${MEDIAN_16}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
-echo "INDEX_HYBRID;ONT;${MEDIAN_14};${MEDIAN_17}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
-echo "INDEX_HYBRID;COMBINED_ONLY_ILL;${MEDIAN_15_ILL};${MEDIAN_18_ILL}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
-echo "INDEX_HYBRID;COMBINED_ONLY_ONT;${MEDIAN_15_ILL};${MEDIAN_18_ONT}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
-echo "ILL;ILL;${MEDIAN_19};${MEDIAN_21}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
-echo "ILL;COMBINED_ONLY_ILL;${MEDIAN_20_ILL};${MEDIAN_22_ILL}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
-echo "ILL;COMBINED_ONLY_ONT;${MEDIAN_20_ONT};${MEDIAN_22_ONT}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
-echo "ONT;ONT;${MEDIAN_23};${MEDIAN_25}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
-echo "ONT;COMBINED_ONLY_ILL;${MEDIAN_24_ILL};${MEDIAN_26_ILL}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
-echo "ONT;COMBINED_ONLY_ONT;${MEDIAN_24_ONT};${MEDIAN_26_ONT}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
+    echo "REFERENCE;SNIPPY;SNPS_GENOME;SNPS_CHROMOSOME" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
+    echo "INDEX_HYBRID;ILL;${MEDIAN_13};${MEDIAN_16}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
+    echo "INDEX_HYBRID;ONT;${MEDIAN_14};${MEDIAN_17}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
+    echo "INDEX_HYBRID;COMBINED_ONLY_ILL;${MEDIAN_15_ILL};${MEDIAN_18_ILL}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
+    echo "INDEX_HYBRID;COMBINED_ONLY_ONT;${MEDIAN_15_ILL};${MEDIAN_18_ONT}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
+    echo "ILL;ILL;${MEDIAN_19};${MEDIAN_21}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
+    echo "ILL;COMBINED_ONLY_ILL;${MEDIAN_20_ILL};${MEDIAN_22_ILL}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
+    echo "ILL;COMBINED_ONLY_ONT;${MEDIAN_20_ONT};${MEDIAN_22_ONT}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
+    echo "ONT;ONT;${MEDIAN_23};${MEDIAN_25}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
+    echo "ONT;COMBINED_ONLY_ILL;${MEDIAN_24_ILL};${MEDIAN_26_ILL}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
+    echo "ONT;COMBINED_ONLY_ONT;${MEDIAN_24_ONT};${MEDIAN_26_ONT}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
 
 ################################################
-chmod -R 777 results/
+    chmod -R 777 results/
 ################################################
     echo "############"
     echo -e "\033[1m#  DONE  #\033[22m"
