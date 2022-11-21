@@ -510,9 +510,9 @@ CPUS="20"
     for CORE_15_ILL in ${OUTDIR15}/core_${OUTDIR15_NAME}_ILL_only.txt
         do
 
-            SUM_15_ILL=$(cat ${CORE_15_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_15_ILL=$(cat ${CORE_15_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_15_ILL=$(cat ${CORE_15_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2  | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_15_ILL=$(cat ${CORE_15_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | paste -s -d+ |bc)
+            AVERAGE_15_ILL=$(cat ${CORE_15_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_15_ILL=$(cat ${CORE_15_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
         
@@ -520,9 +520,9 @@ CPUS="20"
     for CORE_15_ONT in ${OUTDIR15}/core_${OUTDIR15_NAME}_ONT_only.txt
         do
 
-            SUM_15_ONT=$(cat ${CORE_15_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2  | paste -s -d+ |bc)
-            AVERAGE_15_ONT=$(cat ${CORE_15_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_15_ONT=$(cat ${CORE_15_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_15_ONT=$(cat ${CORE_15_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | paste -s -d+ |bc)
+            AVERAGE_15_ONT=$(cat ${CORE_15_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_15_ONT=$(cat ${CORE_15_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
 
@@ -590,9 +590,9 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     for CORE_18_ILL in ${OUTDIR18}/core_${OUTDIR18_NAME}_ILL_only.txt
         do
 
-            SUM_18_ILL=$(cat ${CORE_18_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_18_ILL=$(cat ${CORE_18_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_18_ILL=$(cat ${CORE_18_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_18_ILL=$(cat ${CORE_18_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | paste -s -d+ |bc)
+            AVERAGE_18_ILL=$(cat ${CORE_18_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_18_ILL=$(cat ${CORE_18_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
         
@@ -600,9 +600,9 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     for CORE_18_ONT in ${OUTDIR18}/core_${OUTDIR18_NAME}_ONT_only.txt
         do
 
-            SUM_18_ONT=$(cat ${CORE_18_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_18_ONT=$(cat ${CORE_18_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_18_ONT=$(cat ${CORE_18_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_18_ONT=$(cat ${CORE_18_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | paste -s -d+ |bc)
+            AVERAGE_18_ONT=$(cat ${CORE_18_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_18_ONT=$(cat ${CORE_18_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
    
@@ -651,9 +651,9 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     for CORE_20_ILL in ${OUTDIR20}/core_${OUTDIR20_NAME}_ILL_only.txt
         do
 
-            SUM_20_ILL=$(cat ${CORE_20_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_20_ILL=$(cat ${CORE_20_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_20_ILL=$(cat ${CORE_20_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_20_ILL=$(cat ${CORE_20_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | paste -s -d+ |bc)
+            AVERAGE_20_ILL=$(cat ${CORE_20_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_20_ILL=$(cat ${CORE_20_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
         
@@ -661,9 +661,9 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     for CORE_20_ONT in ${OUTDIR20}/core_${OUTDIR20_NAME}_ONT_only.txt
         do
 
-            SUM_20_ONT=$(cat ${CORE_20_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_20_ONT=$(cat ${CORE_20_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_20_ONT=$(cat ${CORE_20_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_20_ONT=$(cat ${CORE_20_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | paste -s -d+ |bc)
+            AVERAGE_20_ONT=$(cat ${CORE_20_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_20_ONT=$(cat ${CORE_20_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
 
@@ -721,9 +721,9 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     for CORE_22_ILL in ${OUTDIR22}/core_${OUTDIR22_NAME}_ILL_only.txt
         do
 
-            SUM_22_ILL=$(cat ${CORE_22_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_22_ILL=$(cat ${CORE_22_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 |awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_22_ILL=$(cat ${CORE_22_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_22_ILL=$(cat ${CORE_22_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | paste -s -d+ |bc)
+            AVERAGE_22_ILL=$(cat ${CORE_22_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_22_ILL=$(cat ${CORE_22_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
         
@@ -731,9 +731,9 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     for CORE_22_ONT in ${OUTDIR22}/core_${OUTDIR22_NAME}_ONT_only.txt
         do
 
-            SUM_22_ONT=$(cat ${CORE_22_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_22_ONT=$(cat ${CORE_22_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_22_ONT=$(cat ${CORE_22_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_22_ONT=$(cat ${CORE_22_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | paste -s -d+ |bc)
+            AVERAGE_22_ONT=$(cat ${CORE_22_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_22_ONT=$(cat ${CORE_22_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
 
@@ -781,9 +781,9 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     for CORE_24_ILL in ${OUTDIR24}/core_${OUTDIR24_NAME}_ILL_only.txt
         do
 
-            SUM_24_ILL=$(cat ${CORE_24_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_24_ILL=$(cat ${CORE_24_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 |awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_24_ILL=$(cat ${CORE_24_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_24_ILL=$(cat ${CORE_24_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | paste -s -d+ |bc)
+            AVERAGE_24_ILL=$(cat ${CORE_24_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 |awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_24_ILL=$(cat ${CORE_24_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
         
@@ -791,9 +791,9 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     for CORE_24_ONT in ${OUTDIR24}/core_${OUTDIR24_NAME}_ONT_only.txt
         do
 
-            SUM_24_ONT=$(cat ${CORE_24_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_24_ONT=$(cat ${CORE_24_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_24_ONT=$(cat ${CORE_24_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 |sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_24_ONT=$(cat ${CORE_24_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | paste -s -d+ |bc)
+            AVERAGE_24_ONT=$(cat ${CORE_24_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_24_ONT=$(cat ${CORE_24_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 |sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done 
 
@@ -840,9 +840,9 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     for CORE_26_ILL in ${OUTDIR26}/core_${OUTDIR26_NAME}_ILL_only.txt
         do
 
-            SUM_26_ILL=$(cat ${CORE_26_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_26_ILL=$(cat ${CORE_26_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_26_ILL=$(cat ${CORE_26_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_26_ILL=$(cat ${CORE_26_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | paste -s -d+ |bc)
+            AVERAGE_26_ILL=$(cat ${CORE_26_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 |  awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_26_ILL=$(cat ${CORE_26_ILL} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
         
@@ -850,9 +850,9 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     for CORE_26_ONT in ${OUTDIR26}/core_${OUTDIR26_NAME}_ONT_only.txt
         do
 
-            SUM_26_ONT=$(cat ${CORE_26_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | paste -s -d+ |bc)
-            AVERAGE_26_ONT=$(cat ${CORE_26_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
-            MEDIAN_26_ONT=$(cat ${CORE_26_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+            SUM_26_ONT=$(cat ${CORE_26_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | paste -s -d+ |bc)
+            AVERAGE_26_ONT=$(cat ${CORE_26_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_26_ONT=$(cat ${CORE_26_ONT} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
 
         done
 
