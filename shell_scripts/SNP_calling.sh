@@ -302,7 +302,7 @@ CPUS="20"
             
         done
 
-## 1.5 gg ref Ill Chromosome
+## 1.5 Ill Chromosome
     echo -e "\033[0;31m1.5 snippy gg ref Ill chromosome\033[0m"
 ### 1.5.1 gg Ill Chromosome
     OUTDIR9="results/snippy_${ILL_CHROMOSOME_REF_NAME}_ref_vs_Ill_chromosome"
@@ -352,7 +352,7 @@ CPUS="20"
         done
 
     #removing ref vs ref dir for snippy_core
-        rm -rf ${OUTDIR6}/${ONT_CHROMOSOME_REF_NAME}
+        rm -rf ${OUTDIR10}/${ONT_CHROMOSOME_REF_NAME}
 
     #replacing all blanks with 0
         sed -E 's/(^|;)(;|$)/\10\2/g; s/(^|;)(;|$)/\10\2/g' ${OUTDIR10}/${OUTDIR10_NAME}.csv > ${OUTDIR10}/SNP_resume_${OUTDIR10_NAME}.csv
@@ -667,7 +667,7 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
 
         done
 
-    #summary
+    #summary Ill
     for CORE_20 in ${OUTDIR20}/*.txt
         do
 
@@ -856,6 +856,83 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
 
         done
 
+### 2.7 Ill Genome Ref gg ONT Genome
+    OUTDIR27="results/snippy-core_${ILL_GENOME_REF_NAME}_ref_vs_ONT_genomes"
+    OUTDIR27_NAME=$(basename ${OUTDIR27})
+    mkdir -p ${OUTDIR27}
+
+    snippy-core ${OUTDIR6}/*/ --ref ${ILL_GENOME_REF} --prefix core_${OUTDIR27_NAME}
+
+    mv core_${OUTDIR27_NAME}* ${OUTDIR27}
+
+    #summary
+    for CORE_27 in ${OUTDIR27}/*.txt
+        do
+
+            SUM_27=$(cat ${CORE_27} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | paste -s -d+ |bc)
+            AVERAGE_27=$(cat ${CORE_27} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_27=$(cat ${CORE_27} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+
+        done
+
+### 2.8 Ill Chromosome Ref gg ONT Chromosomes
+
+    OUTDIR28="results/snippy-core_${ILL_CHROMOSOME_REF_NAME}_ref_vs_ONT_chromosomes"
+    OUTDIR28_NAME=$(basename ${OUTDIR28})
+    mkdir -p ${OUTDIR28}
+
+    snippy-core ${OUTDIR10}/*/ --ref ${ILL_CHROMOSOME_REF} --prefix core_${OUTDIR28_NAME}
+
+    mv core_${OUTDIR28_NAME}* ${OUTDIR28}
+
+    #summary
+    for CORE_28 in ${OUTDIR28}/*.txt
+        do
+
+            SUM_28=$(cat ${CORE_28} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | paste -s -d+ |bc)
+            AVERAGE_28=$(cat ${CORE_28} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_28=$(cat ${CORE_28} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+
+        done
+
+### 2.9 ONT Genome Ref gg Ill Genome
+OUTDIR23="results/snippy-core_${ONT_GENOME_REF_NAME}_ref_vs_Ill_genomes"
+    OUTDIR23_NAME=$(basename ${OUTDIR29})
+    mkdir -p ${OUTDIR29}
+
+    snippy-core ${OUTDIR7}/*/ --ref ${ONT_GENOME_REF} --prefix core_${OUTDIR29_NAME}
+
+    mv core_${OUTDIR29_NAME}* ${OUTDIR29}
+
+    #summary
+    for CORE_29 in ${OUTDIR29}/*.txt
+        do
+
+            SUM_29=$(cat ${CORE_29} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | paste -s -d+ |bc)
+            AVERAGE_29=$(cat ${CORE_29} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 |awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_29=$(cat ${CORE_29} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 | sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+
+        done
+
+### 2.10 ONT Chromosome ref gg Ill Chromosomes
+    OUTDIR30="results/snippy-core_${ONT_CHROMOSOME_REF_NAME}_ref_vs_ONT_chromosomes"
+    OUTDIR30_NAME=$(basename ${OUTDIR30})
+    mkdir -p ${OUTDIR30}
+
+    snippy-core ${OUTDIR11}/*/ --ref ${ONT_CHROMOSOME_REF} --prefix core_${OUTDIR30_NAME}
+
+    mv core_${OUTDIR30_NAME}* ${OUTDIR30}
+
+    #summary
+    for CORE_30 in ${OUTDIR30}/*.txt
+        do
+
+            SUM_30=$(cat ${CORE_30} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 |paste -s -d+ |bc)
+            AVERAGE_30=$(cat ${CORE_30} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 |awk -F';' 'BEGIN{s=0;}{s=s+$1;}END{print s/NR;}')
+            MEDIAN_30=$(cat ${CORE_30} | column -t| tr  -s '[:blank:]' | sed 's/ /;/g'| cut -d ";" -f 5| tail -n +2 | head -n -1 |sort -n | awk ' { a[i++]=$1; } END { print a[int(i/2)]; }')
+
+        done 
+
 ################################################
     echo "############"
     echo -e "\033[1m#  SUMMARY  #\033[22m"
@@ -901,9 +978,11 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     echo "INDEX_HYBRID;COMBINED_ONLY_ILL;${SUM_15_ILL};${SUM_18_ILL}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
     echo "INDEX_HYBRID;COMBINED_ONLY_ONT;${SUM_15_ONT};${SUM_18_ONT}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
     echo "ILL;ILL;${SUM_19};${SUM_21}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
+    echo "ILL;ONT;${SUM_27};${SUM_28}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
     echo "ILL;COMBINED_ONLY_ILL;${SUM_20_ILL};${SUM_22_ILL}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
     echo "ILL;COMBINED_ONLY_ONT;${SUM_20_ONT};${SUM_22_ONT}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
     echo "ONT;ONT;${SUM_23};${SUM_25}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
+    echo "ONT;ILL;${SUM_29};${SUM_30}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
     echo "ONT;COMBINED_ONLY_ILL;${SUM_24_ILL};${SUM_26_ILL}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
     echo "ONT;COMBINED_ONLY_ONT;${SUM_24_ONT};${SUM_26_ONT}" >> results/summary_snippy-core/snippy-core_summary_SUM.csv
 
@@ -914,9 +993,11 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     echo "INDEX_HYBRID;COMBINED_ONLY_ILL;${AVERAGE_15_ILL};${AVERAGE_18_ILL}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
     echo "INDEX_HYBRID;COMBINED_ONLY_ONT;${AVERAGE_15_ONT};${AVERAGE_18_ONT}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
     echo "ILL;ILL;${AVERAGE_19};${AVERAGE_21}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
+    echo "ILL;ONT;${AVERAGE_27};${AVERAGE_28}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
     echo "ILL;COMBINED_ONLY_ILL;${AVERAGE_20_ILL};${AVERAGE_22_ILL}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
     echo "ILL;COMBINED_ONLY_ONT;${AVERAGE_20_ONT};${AVERAGE_22_ONT}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
     echo "ONT;ONT;${AVERAGE_23};${AVERAGE_25}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
+    echo "ONT;ILL;${AVERAGE_29};${AVERAGE_30}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
     echo "ONT;COMBINED_ONLY_ILL;${AVERAGE_24_ILL};${AVERAGE_26_ILL}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
     echo "ONT;COMBINED_ONLY_ONT;${AVERAGE_24_ONT};${AVERAGE_26_ONT}" >> results/summary_snippy-core/snippy-core_summary_AVERAGE.csv
 
@@ -927,9 +1008,11 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
     echo "INDEX_HYBRID;COMBINED_ONLY_ILL;${MEDIAN_15_ILL};${MEDIAN_18_ILL}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
     echo "INDEX_HYBRID;COMBINED_ONLY_ONT;${MEDIAN_15_ILL};${MEDIAN_18_ONT}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
     echo "ILL;ILL;${MEDIAN_19};${MEDIAN_21}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
+    echo "ILL;ONT;${MEDIAN_27};${MEDIAN_28}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
     echo "ILL;COMBINED_ONLY_ILL;${MEDIAN_20_ILL};${MEDIAN_22_ILL}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
     echo "ILL;COMBINED_ONLY_ONT;${MEDIAN_20_ONT};${MEDIAN_22_ONT}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
     echo "ONT;ONT;${MEDIAN_23};${MEDIAN_25}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
+    echo "ONT;ILL;${MEDIAN_29};${MEDIAN_30}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
     echo "ONT;COMBINED_ONLY_ILL;${MEDIAN_24_ILL};${MEDIAN_26_ILL}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
     echo "ONT;COMBINED_ONLY_ONT;${MEDIAN_24_ONT};${MEDIAN_26_ONT}" >> results/summary_snippy-core/snippy-core_summary_MEDIAN.csv
 
