@@ -896,7 +896,7 @@ echo -e "\033[0;31m1.1 snippy-core: ref hybrid genome\033[0m"
         done
 
 ### 2.9 ONT Genome Ref gg Ill Genome
-OUTDIR29="results/snippy-core_${ONT_GENOME_REF_NAME}_ref_vs_Ill_genomes"
+    OUTDIR29="results/snippy-core_${ONT_GENOME_REF_NAME}_ref_vs_Ill_genomes"
     OUTDIR29_NAME=$(basename ${OUTDIR29})
     mkdir -p ${OUTDIR29}
 
