@@ -22,14 +22,11 @@
     echo -e "\033[1m#  MEDAKA #\033[22m"
     echo "############"   
 
-mkdir -p medaka_loop
-
 for FASTQ_FILE in ${FASTQ}*.fastq.gz
 do
     echo $FASTQ_FILE
     FASTQ_NAME=$(basename -s ".fastq.gz" ${FASTQ_FILE})
     echo $FASTQ_NAME
     echo $REFERENCE
-    medaka_haploid_variant -i ${FASTQ_FILE} -r ${REFERENCE} -m r104_e81_sup_g5015 \
-        -o medaka_${FASTQ_NAME}_vs_${REFERENCE_NAME}
+    medaka_haploid_variant -i ${FASTQ_FILE} -r ${REFERENCE} -m r104_e81_sup_variant_g610 -o medaka_${FASTQ_NAME}_vs_${REFERENCE_NAME} -t2
 done
