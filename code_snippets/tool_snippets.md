@@ -43,6 +43,7 @@ FastTree -gtr -nt clean.core.aln > clean.core.tree
 guppy_basecaller -c dna_r10.4_e8.1_modbases_5hmc_5mc_cg_sup.cfg -r -i nano-server/GRIDION_DISK/20220407_klebsiella_outbreak_ukl_batch04/20220407_klebsiella_outbreak_ukl_batch04/20220407_1344_X2_FAR28270_3cd30ca5/fast5_pass/ -s basecalled_demulti_data --device auto  --barcode_kits "SQK-NBD112-24" --gpu_runners_per_device 20
 ```
 ## [Assembly-stats](https://github.com/sanger-pathogens/assembly-stats#installation)
+Statistics for Assemblys
 ```bash=
 docker run --rm -it -v $PWD:/input sangerpathogens/assembly-stats:version-1.0.1-docker1 bash
 ```
