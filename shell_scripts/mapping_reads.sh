@@ -1,4 +1,6 @@
 #!/bin/bash
+# Loop to map read from one sample to the related assembly
+bash mapping_read.sh fasta/ fastq/
 
 CPUS="20"
 DIR="BAMS"
