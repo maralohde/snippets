@@ -13,3 +13,7 @@ for x in *masked; do mv "$x" "${x%.masked}"; done
 ```bash=
 for X in *.fasta; do mv "$X" "${X%.fasta}_masked.fasta";done
 ```
+## Combining tsv files
+```bash=
+paste -d, renaming1.tsv <(cut -d " " -f1 renaming2.tsv | awk '{print $0}') > renaming3.tsv
+```
