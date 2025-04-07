@@ -25,6 +25,8 @@ for f in *.fasta; do mv "$f" "$(echo "$f" | sed s/IMG/VACATION/)"; done
 ```
 ## Find and Replace Inside a Text File
 ```bash=
-sed 's/.fasta/.fastq/g' filename
-sed 's#9/9#9#g' filename
+sed -i -e 's/.fasta/.fastq/g' filename
+```
+```bash=
+sed -i -e 's#9/9#9#g' filename
 ```
