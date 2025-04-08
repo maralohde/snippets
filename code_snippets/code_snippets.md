@@ -28,5 +28,8 @@ for f in *.fasta; do mv "$f" "$(echo "$f" | sed s/IMG/VACATION/)"; done
 sed -i -e 's/.fasta/.fastq/g' filename
 ```
 ```bash=
+sed 's/_chromosome//g' 
+```
+```bash=
 sed -i -e 's#9/9#9#g' filename
 ```
